@@ -16,7 +16,7 @@ public class turret : MonoBehaviour {
 
     public GameObject bulletPrefab;
     public Transform firePoint;
-
+    EnemyHealth enemyHealth = null;
 
     // Use this for initialization
     void Start () {
@@ -36,6 +36,7 @@ public class turret : MonoBehaviour {
             {
                 shortestDistance = distanceToEnemy;
                 nearestEnemy = enemy;
+                enemyHealth = nearestEnemy.GetComponent<EnemyHealth>();
             }
 
             if(nearestEnemy != null && shortestDistance <= range)
@@ -74,7 +75,7 @@ public class turret : MonoBehaviour {
         Bullet bullet = bulletGO.GetComponent<Bullet>();
 
         if (bullet != null)
-            bullet.Seek(target);
+            bullet.Seek(target, enemyHealth);
     }
     void OnDrawGizmosSelected()
     {
