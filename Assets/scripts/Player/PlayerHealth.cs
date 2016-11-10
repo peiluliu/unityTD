@@ -6,23 +6,31 @@ using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
-    public int startingHealth = 100;
-    public int currentHealth;
+    public int start = 2;
+    public int current = 2;
+    public int startingHealth = 2;
+    public int currentHealth = 2;
     public Slider healthSlider;
     public Image damageImage;
     public AudioClip deathClip;
     public float flashSpeed = 5f;
     public Color flashColour = new Color(1f, 0f, 0f, 0.1f);
-
+    
+    
 
     Animator anim;
     AudioSource playerAudio;
     PlayerMovement playerMovement;
     PlayerShooting playerShooting;
     bool isDead;
-    bool damaged;
+    public bool damaged;
     int HealthPostionAmount;
 
+    void Start()
+    {
+        //start = startingHealth;
+        //currentHealth = current;
+    }
     void Awake ()
     {
         anim = GetComponent <Animator> ();
@@ -35,6 +43,7 @@ public class PlayerHealth : MonoBehaviour
 
     void Update ()
     {
+
         if(damaged)
         {
             damageImage.color = flashColour;
@@ -49,9 +58,10 @@ public class PlayerHealth : MonoBehaviour
 
     public void TakeDamage (int amount)
     {
+        SceneManager.LoadScene(2);
         damaged = true;
 
-        currentHealth -= amount;
+        //currentHealth  = currentHealth - amount;
 
         healthSlider.value = currentHealth;
 
@@ -59,13 +69,18 @@ public class PlayerHealth : MonoBehaviour
 
         if(currentHealth <= 0 && !isDead)
         {
+            
             Death ();
+           
         }
+        //SceneManager.LoadScene(2);
+
     }
 
 
     void Death ()
     {
+        //SceneManager.LoadScene(2);
         isDead = true;
 
         playerShooting.DisableEffects ();
@@ -77,6 +92,8 @@ public class PlayerHealth : MonoBehaviour
 
         playerMovement.enabled = false;
         playerShooting.enabled = false;
+        
+        
     }
 
 

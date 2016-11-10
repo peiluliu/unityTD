@@ -8,7 +8,7 @@ public class WaveSpawner : MonoBehaviour {
     public Transform spawnPoint;
     public float TimeBetweenWaves = 5f;
     private float countdown = 2f;
-
+    public int waveTotal;
     private int waveNumber = 0;
 
 	// Update is called once per frame
@@ -24,8 +24,14 @@ public class WaveSpawner : MonoBehaviour {
 
     IEnumerator SpawnWave()
     {
-        waveNumber++;
-        for (int i = 0; i < waveNumber; i++)
+        waveNumber++; 
+
+        if (waveNumber > waveTotal)
+        {
+            changeScence.changeToScene(playerState.curretScenceNumber);
+        }
+
+            for (int i = 0; i < waveNumber; i++)
         {
             SpawnEnemy();
             yield return new WaitForSeconds(0.5f);

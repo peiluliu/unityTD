@@ -27,7 +27,7 @@ public class OriganalEnemyMovement : MonoBehaviour {
     {
         if(wavepointIndex >= waypoints.points.Length - 1)
         {
-            Destroy(gameObject);
+            //Destroy(gameObject);
             return;
         }
         wavepointIndex++;

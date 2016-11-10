@@ -1,5 +1,5 @@
 ﻿using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameOverManager : MonoBehaviour
 {
     public PlayerHealth playerHealth;
@@ -23,8 +23,9 @@ public class GameOverManager : MonoBehaviour
             restartTimer += Time.deltaTime;
             if(restartTimer >= restartDelay)
             {
-                Application.LoadLevel(Application.loadedLevel);
+                SceneManager.LoadScene(2);
             }
         }
+        SceneManager.LoadScene(2);
     }
 }
